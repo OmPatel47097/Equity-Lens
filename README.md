@@ -14,8 +14,8 @@ Equity Lens is designed to predict the prices of S&P 500 stocks based on histori
 - Equity Lens
   - apps
   - data
-   - raw
-   - processed
+    - raw
+    - processed
   - models
   - notebooks
   - src
