@@ -10,6 +10,16 @@ Equity Lens is designed to predict the prices of S&P 500 stocks based on histori
 3. Balbhadra Prajapati
 4. Dharmik Nakarani
 
+## Project Structure
+- Equity Lens
+  - apps
+  - data
+   - raw
+   - processed
+  - models
+  - notebooks
+  - src
+
 # Project Management
 The project is managed using Azure DevOps, following the Scrum framework. Our sprint planning, backlogs, and work items are tracked and updated regularly.
 
@@ -31,5 +41,5 @@ The project is managed using Azure DevOps, following the Scrum framework. Our sp
     - Design frontend UI/UX
     - Implement frontend using Flask/React JS
   - Deployment and Maintenance
-   - Deploy the application
-   - Set up monitoring and maintenance protocols
+    - Deploy the application
+    - Set up monitoring and maintenance protocols
