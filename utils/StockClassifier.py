@@ -2,13 +2,19 @@ import yfinance as yf
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import StandardScaler
-from sklearn.cluster import KMeans
+from sklearn.cluster import KMeans, DBSCAN, AgglomerativeClustering
+from sklearn.mixture import GaussianMixture
 
+'''
+Data:
+symbol, volatility, beta, annualized return, sharpe ratio
+'''
 
 class StockClassifier:
-    def __init__(self, stock_df, sp500_df, tickers):
+    def __init__(self, stock_df, volume_df,sp500_df, tickers):
         self.stock_df = stock_df
         self.sp500_df = sp500_df
+        self.volume_df = volume_df
         self.tickers = tickers
 
     def risk_based_clustering(self):
@@ -35,10 +41,12 @@ class StockClassifier:
         scaler = StandardScaler()
         risk_metrics_scaled = scaler.fit_transform(risk_metrics)
 
-        # Step 5: Classify Stocks Using K-Means Clustering
-        kmeans = KMeans(n_clusters=3, random_state=0)
-        kmeans.fit(risk_metrics_scaled)
-        risk_metrics['Cluster'] = kmeans.labels_
+        # Step 5: Classify Stocks Using Various Clustering Methods
+        risk_metrics['KMeans_Cluster'] = KMeans(n_clusters=3, random_state=0).fit_predict(risk_metrics_scaled)
+        risk_metrics['DBSCAN_Cluster'] = DBSCAN(eps=0.5, min_samples=2).fit_predict(risk_metrics_scaled)
+        risk_metrics['Agg_Cluster'] = AgglomerativeClustering(n_clusters=3).fit_predict(risk_metrics_scaled)
+        risk_metrics['GMM_Cluster'] = GaussianMixture(n_components=3, random_state=0).fit_predict(risk_metrics_scaled)
+
         return risk_metrics
 
     def performance_clustering(self):
@@ -58,8 +66,56 @@ class StockClassifier:
         scaler = StandardScaler()
         performance_metrics_scaled = scaler.fit_transform(performance_metrics)
 
-        # Step 5: Cluster Stocks Using K-Means Clustering
-        kmeans = KMeans(n_clusters=3, random_state=0)
-        kmeans.fit(performance_metrics_scaled)
-        performance_metrics['Cluster'] = kmeans.labels_
+        # Step 5: Classify Stocks Using Various Clustering Methods
+        performance_metrics['KMeans_Cluster'] = KMeans(n_clusters=3, random_state=0).fit_predict(performance_metrics_scaled)
+        performance_metrics['DBSCAN_Cluster'] = DBSCAN(eps=0.5, min_samples=2).fit_predict(performance_metrics_scaled)
+        performance_metrics['Agg_Cluster'] = AgglomerativeClustering(n_clusters=3).fit_predict(performance_metrics_scaled)
+        performance_metrics['GMM_Cluster'] = GaussianMixture(n_components=3, random_state=0).fit_predict(performance_metrics_scaled)
+
         return performance_metrics
+
+    def volume_based_clustering(self):
+
+        volume_data = self.volume_df['Volume']
+
+        # Step 3: Normalize the Volume Data
+        scaler = StandardScaler()
+        volume_scaled = scaler.fit_transform(volume_data.values.reshape(-1, 1))
+
+        # Step 4: Classify Stocks Using Various Clustering Methods
+        volume_data['KMeans_Cluster'] = KMeans(n_clusters=3, random_state=0).fit_predict(volume_scaled)
+        volume_data['DBSCAN_Cluster'] = DBSCAN(eps=0.5, min_samples=2).fit_predict(volume_scaled)
+        volume_data['Agg_Cluster'] = AgglomerativeClustering(n_clusters=3).fit_predict(volume_scaled)
+        volume_data['GMM_Cluster'] = GaussianMixture(n_components=3, random_state=0).fit_predict(volume_scaled)
+
+        return volume_data
+
+    def price_based_clustering(self):
+        price_data = self.stock_df['Close']
+
+        # Step 3: Normalize the Price Data
+        scaler = StandardScaler()
+        price_scaled = scaler.fit_transform(price_data.values.reshape(-1, 1))
+
+        # Step 4: Classify Stocks Using Various Clustering Methods
+        price_data['KMeans_Cluster'] = KMeans(n_clusters=3, random_state=0).fit_predict(price_scaled)
+        price_data['DBSCAN_Cluster'] = DBSCAN(eps=0.5, min_samples=2).fit_predict(price_scaled)
+        price_data['Agg_Cluster'] = AgglomerativeClustering(n_clusters=3).fit_predict(price_scaled)
+        price_data['GMM_Cluster'] = GaussianMixture(n_components=3, random_state=0).fit_predict(price_scaled)
+
+        return price_data
+
+    def fundamental_based_clustering(self, fundamentals_df):
+        # Step 3: Normalize the Fundamental Data
+        scaler = StandardScaler()
+        fundamentals_scaled = scaler.fit_transform(fundamentals_df)
+
+        # Step 4: Classify Stocks Using Various Clustering Methods
+        fundamentals_df['KMeans_Cluster'] = KMeans(n_clusters=3, random_state=0).fit_predict(fundamentals_scaled)
+        fundamentals_df['DBSCAN_Cluster'] = DBSCAN(eps=0.5, min_samples=2).fit_predict(fundamentals_scaled)
+        fundamentals_df['Agg_Cluster'] = AgglomerativeClustering(n_clusters=3).fit_predict(fundamentals_scaled)
+        fundamentals_df['GMM_Cluster'] = GaussianMixture(n_components=3, random_state=0).fit_predict(fundamentals_scaled)
+
+        return fundamentals_df
+
+
