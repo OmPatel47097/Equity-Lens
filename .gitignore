@@ -135,6 +135,10 @@ dmypy.json
 # Folders
 saved_model/
 
+# Database files -op
 db/
 data/db/
 *.db
+
+# ide folder -op
+.idea/
