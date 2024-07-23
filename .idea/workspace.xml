@@ -4,7 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2fed0097-cbb1-4444-803f-d97623bcd0a7" name="Changes" comment="UseCase 2" />
+    <list default="true" id="2fed0097-cbb1-4444-803f-d97623bcd0a7" name="Changes" comment="UseCase 2">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Equity-Lens.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Equity-Lens.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/BlackLittermanFramework.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/BlackLittermanFramework.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/POEDA.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/POEDA_HypoTest.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/PortfolioEDA.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/PortfolioEDA.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/StockMovementPrediction.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/StockMovementPrediction.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/test.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/test.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prototypes/stock_trend_pred.py" beforeDir="false" afterPath="$PROJECT_DIR$/prototypes/stock_trend_pred.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/DatabaseManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/DatabaseManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/StockDataManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/StockDataManager.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,37 +76,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Python.BlackLittermanOptimization.executor&quot;: &quot;Run&quot;,
-    &quot;Python.PortfolioOptimizeController.executor&quot;: &quot;Run&quot;,
-    &quot;Python.StockClassifier.executor&quot;: &quot;Run&quot;,
-    &quot;Python.StockDataManager.executor&quot;: &quot;Run&quot;,
-    &quot;Python.StockTrendPrediction.executor&quot;: &quot;Run&quot;,
-    &quot;Python.app.executor&quot;: &quot;Run&quot;,
-    &quot;Python.blpo.executor&quot;: &quot;Run&quot;,
-    &quot;Python.hello-world.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.stock_trend_pred.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/College/Sem 2/Projects In ML/EquityLens&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;python.debugger.dataview.coloredbydefault&quot;: &quot;false&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python.BlackLittermanOptimization.executor": "Run",
+    "Python.PortfolioOptimizeController.executor": "Run",
+    "Python.StockClassifier.executor": "Run",
+    "Python.StockDataManager.executor": "Run",
+    "Python.StockTrendPrediction.executor": "Run",
+    "Python.app.executor": "Run",
+    "Python.blpo.executor": "Run",
+    "Python.hello-world.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.stock_trend_pred.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "S__4__UC__Improvement",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "S:/Conestoga/Learning_Subject/Level2/Projects in Machine Learning/Main_EquityLENs-CLONED/Equity-Lens/data/db/equity_lens_db.db",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "python.debugger.dataview.coloredbydefault": "false",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlite&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\College\Sem 2\Projects In ML\Equity-Lens\services" />
@@ -105,7 +120,7 @@
       <recent name="D:\College\Sem 2\Projects In ML\Equity-Lens" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.blpo">
+  <component name="RunManager" selected="Python.main">
     <configuration name="StockDataManager" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Equity-Lens" />
       <option name="ENV_FILES" value="" />
@@ -175,10 +190,34 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="stock_trend_pred" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Equity-Lens" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/prototypes" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/prototypes/stock_trend_pred.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.blpo" />
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.stock_trend_pred" />
+        <item itemvalue="Python.blpo" />
         <item itemvalue="Python.StockDataManager" />
       </list>
     </recent_temporary>
@@ -186,8 +225,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-PY-241.14494.241" />
-        <option value="bundled-python-sdk-0509580d9d50-28c9f5db9ffe-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.14494.241" />
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-PY-241.15989.155" />
+        <option value="bundled-python-sdk-babbdf50b680-7c6932dee5e4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.15989.155" />
       </set>
     </attachedChunks>
   </component>
@@ -225,6 +264,12 @@
       <workItem from="1720722448943" duration="6055000" />
       <workItem from="1720728722471" duration="6577000" />
       <workItem from="1721081579765" duration="844000" />
+      <workItem from="1721333022983" duration="1696000" />
+      <workItem from="1721335009319" duration="2190000" />
+      <workItem from="1721493025157" duration="4946000" />
+      <workItem from="1721510478142" duration="731000" />
+      <workItem from="1721669070511" duration="1887000" />
+      <workItem from="1721737888047" duration="9337000" />
     </task>
     <task id="LOCAL-00001" summary="hello-world.py created">
       <option name="closed" value="true" />
@@ -290,16 +335,17 @@
     <option name="LAST_COMMIT_MESSAGE" value="UseCase 2" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Equity_Lens$hello_world.coverage" NAME="hello-world Coverage Results" MODIFIED="1715907129189" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Equity_Lens$blpo.coverage" NAME="blpo Coverage Results" MODIFIED="1720722958878" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/services" />
-    <SUITE FILE_PATH="coverage/EquityLens$blpo.coverage" NAME="blpo Coverage Results" MODIFIED="1720734204155" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/services" />
     <SUITE FILE_PATH="coverage/Equity_Lens$StockClassifier.coverage" NAME="StockClassifier Coverage Results" MODIFIED="1719854645683" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
+    <SUITE FILE_PATH="coverage/Equity_Lens$main.coverage" NAME="main Coverage Results" MODIFIED="1721760072689" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Equity_Lens$hello_world.coverage" NAME="hello-world Coverage Results" MODIFIED="1715907129189" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Equity_Lens$StockDataManager.coverage" NAME="StockDataManager Coverage Results" MODIFIED="1720619074933" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
-    <SUITE FILE_PATH="coverage/Equity_Lens$stock_trend_pred.coverage" NAME="stock_trend_pred Coverage Results" MODIFIED="1720723885348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Equity_Lens$app.coverage" NAME="app Coverage Results" MODIFIED="1720722994680" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
-    <SUITE FILE_PATH="coverage/EquityLens$main.coverage" NAME="main Coverage Results" MODIFIED="1720733844735" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Equity_Lens$BlackLittermanOptimization.coverage" NAME="BlackLittermanOptimization Coverage Results" MODIFIED="1719783544071" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/services" />
-    <SUITE FILE_PATH="coverage/Equity_Lens$StockTrendPrediction.coverage" NAME="StockTrendPrediction Coverage Results" MODIFIED="1719441008442" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
+    <SUITE FILE_PATH="coverage/Equity_Lens$app.coverage" NAME="app Coverage Results" MODIFIED="1720722994680" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
+    <SUITE FILE_PATH="coverage/Equity_Lens$blpo.coverage" NAME="blpo Coverage Results" MODIFIED="1720722958878" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/services" />
+    <SUITE FILE_PATH="coverage/Equity_Lens$stock_trend_pred.coverage" NAME="stock_trend_pred Coverage Results" MODIFIED="1721739218342" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/prototypes" />
     <SUITE FILE_PATH="coverage/Equity_Lens$PortfolioOptimizeController.coverage" NAME="PortfolioOptimizeController Coverage Results" MODIFIED="1719783394156" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
+    <SUITE FILE_PATH="coverage/Equity_Lens$StockTrendPrediction.coverage" NAME="StockTrendPrediction Coverage Results" MODIFIED="1719441008442" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
+    <SUITE FILE_PATH="coverage/EquityLens$main.coverage" NAME="main Coverage Results" MODIFIED="1720733844735" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/EquityLens$blpo.coverage" NAME="blpo Coverage Results" MODIFIED="1720734204155" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/services" />
   </component>
 </project>

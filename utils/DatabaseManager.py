@@ -10,12 +10,34 @@ class DatabaseManager:
         self.cursor = None
 
     def connect(self):
-        self.connection = sqlite3.connect('../data/db/equity_lens_db.db')
-        self.cursor = self.connection.cursor()
-        return self.connection, self.cursor
+        try:
+            current_dir = os.path.dirname(os.path.abspath(__file__))    # Get the current directory
+            # construct path to the database
+            db_path = os.path.join(current_dir, "..", "data", "db", "equity_lens_db.db")
+            db_path = os.path.normpath(db_path)
+            # self.connection = sqlite3.connect("../data/db/equity_lens_db.db")
+            self.connection = sqlite3.connect(db_path)
+            self.cursor = self.connection.cursor()
+
+            print("Connected to the database successfully!")
+            return self.connection, self.cursor
+
+        except sqlite3.Error as error:
+            print(f"SQLite operational error: {error}")
+            print(f"Attempted to open database at: {db_path}")
+            print(f"Current working directory: {os.getcwd()}")
+            print(f"Directory contents of the parent of 'data': {os.listdir(os.path.dirname(os.path.dirname(db_path)))}")
+            raise
+        except Exception as e:
+            print(f"An unexpected error occurred: {e}")
+            raise
 
     def close(self):
-        self.connection.close()
+        # self.connection.close()
+        if self.cursor:
+            self.cursor.close()
+        if self.connection:
+            self.connection.close()
 
     def add_table(self, df, name):
         self.connect()
@@ -24,7 +46,7 @@ class DatabaseManager:
 
     def select_tickers(self, table, tickers):
         self.connect()
-        self.cursor.execute(f"SELECT date, {tickers} FROM `{table}`")
+        self.cursor.execute(f"SELECT `date`, {tickers} FROM `{table}`")
         data = self.cursor.fetchall()
         self.close()
         return data

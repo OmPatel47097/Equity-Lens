@@ -142,3 +142,6 @@ data/db/
 
 # ide folder -op
 .idea/
+
+# environment file
+EquityLens_OP/
