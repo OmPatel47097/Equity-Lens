@@ -1,5 +1,7 @@
 import json
+from bs4 import BeautifulSoup
 import pandas as pd
+import requests
 import yfinance as yf
 from flask import Flask, jsonify, request
 from backend.FinancialSentimentAnalysis import FinancialSentimentAnalyzer
@@ -36,13 +38,28 @@ def get_symbols():
 analyzer = FinancialSentimentAnalyzer()
 
 
+# Function to get article text
+def get_article_text(url):
+    response = requests.get(url)
+    soup = BeautifulSoup(response.content, "html.parser")
+    paragraphs = soup.find_all("p")
+    article_text = " ".join([para.get_text() for para in paragraphs])
+    return article_text
+
+
 @app.route("/analyze", methods=["POST"])
 def analyze_sentiment():
     try:
         data = request.json
-        if "text" not in data:
-            return jsonify({"error": "No text provided"}), 400
-        text = data["text"]
+        if "ticker_symbol" not in data:
+            return jsonify({"error": "No ticker provided"}), 400
+        ticker_symbol = data.get("ticker_symbol", None)
+        news = yf.Ticker(ticker_symbol).news
+        for i, article in enumerate(news[:1], 1):
+            title = f"Title: {article['title']}"
+            publisher = f"Publisher: {article['publisher']}"
+            snippet = f"Snippet: {article.get('snipplet', 'N/A')}"
+            text = title + "\n" + publisher + "\n" + snippet
         sentiment, score = analyzer.analyze_sentiment(text)
         return jsonify({"text": text, "sentiment": sentiment, "score": score})
     except Exception as e:
