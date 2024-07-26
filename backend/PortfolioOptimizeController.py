@@ -2,9 +2,10 @@ from flask import Blueprint, jsonify, request
 from flask_cors import CORS, cross_origin
 import pandas as pd
 
-from services.BlackLittermanOptimization import BlackLittermanOptimization
+from services.blacklitterman_optimization import BlackLittermanOptimization
 from utils.StockDataManager import StockDataManager
 import yfinance as yf
+import logging
 
 bp_portfolio_optimizer = Blueprint('portfolio_optimizer', __name__)
 CORS(bp_portfolio_optimizer)
@@ -12,6 +13,7 @@ CORS(bp_portfolio_optimizer)
 
 @bp_portfolio_optimizer.route('/optimize_portfolio', methods=['POST'])
 def optimizePortfolio():
+    logging.info("Received request to optimize portfolio")
     try:
         data = request.get_json()
         if data is None:
@@ -51,6 +53,7 @@ def asset_allocation_chart():
     """
     returns data for asset allocation chart
     """
+    logging.info("Received request to asset allocation chart")
     try:
         data = request.get_json()
         if data is None:
@@ -96,6 +99,7 @@ def asset_allocation_chart():
 
 @bp_portfolio_optimizer.route('/asset_info', methods=['POST'])
 def asset_info():
+    logging.info("Received request to asset info")
     try:
         data = request.get_json()
         if data is None:
@@ -129,6 +133,7 @@ def asset_info():
 
 @bp_portfolio_optimizer.route('/cumulative_return', methods=['POST'])
 def cumulative_return():
+    logging.info("Received request to cumulative return")
     try:
         data = request.get_json()
         if data is None:
@@ -141,6 +146,8 @@ def cumulative_return():
         assets = data['assets']
         period = data['period']
 
+        print(assets)
+
         if type(assets) is not list:
             return jsonify({'error': 'Provide assets in list format'}), 400
         if len(assets) == 0:
@@ -151,8 +158,7 @@ def cumulative_return():
         stockDataManager = StockDataManager()
 
         # Fetch historical data for the portfolio
-        portfolio_data_list = [stockDataManager.history(ticker=symbol, period=period, interval='1d')[['adj_close']] for
-                               symbol in symbols]
+        portfolio_data_list = [stockDataManager.history(ticker=symbol, period=period, interval='1d')[['adj_close']] for symbol in symbols]
         portfolio_data = pd.concat(portfolio_data_list, axis=1, keys=[symbol for symbol in symbols])
         portfolio_data.columns = portfolio_data.columns.droplevel(1)
         portfolio_data = portfolio_data.fillna(method='ffill').fillna(method='bfill')

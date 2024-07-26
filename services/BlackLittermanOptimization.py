@@ -1,5 +1,5 @@
+import os
 import numpy as np
-import yfinance as yf
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 import torch
@@ -7,9 +7,13 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 from scipy.optimize import minimize
-
+from dotenv import load_dotenv
 from utils.StockDataManager import StockDataManager
+import logging
+from logger import configure_logging
 
+load_dotenv()
+configure_logging()
 
 # Transformer model
 class TransformerModel(nn.Module):
@@ -27,11 +31,13 @@ class TransformerModel(nn.Module):
 # GAN models
 class Generator(nn.Module):
     def __init__(self, input_dim, output_dim):
+        self.out_features = int(os.getenv('OUTPUT_FEATURES', 128))
+        self.in_features = int(os.getenv('INPUT_FEATURES', 128))
         super(Generator, self).__init__()
         self.model = nn.Sequential(
-            nn.Linear(input_dim, 128),
+            nn.Linear(input_dim, self.out_features),
             nn.ReLU(),
-            nn.Linear(128, output_dim),
+            nn.Linear(self.in_features, output_dim),
             nn.Tanh()
         )
 
@@ -55,9 +61,14 @@ class Discriminator(nn.Module):
 
 class BlackLittermanOptimization:
     def __init__(self):
+        logging.info("Initializing BlackLittermanOptimization")
+        self.model_dim = int(os.getenv('MODEL_DIM', 64))
+        self.num_heads = int(os.getenv('NO_HEADS', 4))
+        self.num_layers = int(os.getenv('NO_LAYERS', 2))
         self.stockDataManger = StockDataManager()
 
     def collect_data(self, tickers, period):
+        logging.info("Collecting data for {}".format(tickers))
         # TODO: collect data from local datasource
         '''
         Collect historical data for the given tickers and periods
@@ -73,6 +84,7 @@ class BlackLittermanOptimization:
         return data
 
     def normalize_data(self, data, tickers):
+        logging.info("Normalizing data")
         '''
         Normalize the data using MinMaxScaler
         :param data: the dataframe to normalize
@@ -85,6 +97,7 @@ class BlackLittermanOptimization:
         return data_normalized
 
     def train_generator(self, n_assets, data):
+        logging.info("Training generator")
         # TODO: Hypertune model parameters
         '''
         Train the generator model
@@ -94,9 +107,9 @@ class BlackLittermanOptimization:
         '''
         input_dim = n_assets
         output_dim = n_assets
-        model_dim = 64
-        num_heads = 4
-        num_layers = 2
+        model_dim = self.model_dim
+        num_heads = self.num_heads
+        num_layers = self.num_layers
 
         # Initialize models
         transformer = TransformerModel(input_dim, model_dim, num_heads, num_layers, output_dim)
@@ -141,6 +154,7 @@ class BlackLittermanOptimization:
         return generator
 
     def optimize_weights(self, data, n_assets, generator, delta=2.5, tau=0.05, risk_free_rate=0.02):
+        logging.info("Optimizing weights")
         '''
         Optimize the weights using the Black-Litterman model
         :param data: the dataframe with the normalized historical data
@@ -207,6 +221,7 @@ class BlackLittermanOptimization:
             # obj['ticker'] =
             obj = {'ticker': tickers[i], 'investment': investment, 'weight': optimal_weights[i]}
             output.append(obj)
+        logging.info(output)
         return output
 
 # if __name__ == '__main__':

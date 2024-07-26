@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  streamlit-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${PORT:-8501}:80"  # Local development port
+      - "7813:80"           # Server deployment port
+    env_file:
+      - .env
+    volumes:
+      - ./models:/app/models
+    environment:
+      - OUTPUT_FEATURES=${OUTPUT_FEATURES}
+      - INPUT_FEATURES=${INPUT_FEATURES}
+      - MODEL_DIM=${MODEL_DIM}
+      - NO_HEADS=${NO_HEADS}
+      - NO_LAYERS=${NO_LAYERS}
+      - STP_MODEL_PATH=${STP_MODEL_PATH}

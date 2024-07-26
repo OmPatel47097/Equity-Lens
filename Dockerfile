@@ -23,7 +23,7 @@ RUN cp config.toml ~/.streamlit/config.toml
 RUN cp credentials.toml ~/.streamlit/credentials.toml
 
 # This sets the default command for the container to run the app with Streamlit.
-ENTRYPOINT ["streamlit", "run"]
+ENTRYPOINT ["python"]
 
 # This command tells Streamlit to run your app.py script when the container starts.
-CMD ["blpo.py"]
+CMD ["main.py"]

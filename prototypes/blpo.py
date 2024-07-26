@@ -1,7 +1,9 @@
 import streamlit as st
+import logging
 from services.BlackLittermanOptimization import BlackLittermanOptimization
 
 def main():
+    logging.info("Starting Black-Litterman Optimization")
     st.title("Equity Lens")
     st.header("Portfolio Optimization using Black Litterman")
     blpo = BlackLittermanOptimization()

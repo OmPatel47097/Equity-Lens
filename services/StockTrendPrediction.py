@@ -12,7 +12,9 @@ pd.options.mode.chained_assignment = None
 
 from utils.IndicatorGenerator import IndicatorGenerator
 from utils.StockDataManager import StockDataManager
+from dotenv import load_dotenv
 
+load_dotenv()
 
 class StockTrendPrediction:
 
@@ -24,6 +26,7 @@ class StockTrendPrediction:
         self.data = None
         self.sequence_length = sequence_length
         self.stockDataManager = StockDataManager()
+        self.model_path = os.getenv('STP_MODEL_PATH', '../models/stock_prediction_model.h5')
 
     def load_data(self, ticker):
         self.data = self.stockDataManager.history(ticker, period='max', interval='1d')
@@ -175,7 +178,7 @@ class StockTrendPrediction:
         best_model.save(f'../models/stock_prediction_model_{best_model_loss}.h5')
 
     def predict(self, data):
-        model_path = os.path.join('models','stock_prediction_model_1.h5')
+        model_path = self.model_path
         model = load_model(model_path)
         return model.predict(data)
 # D:\College\Sem 2\Projects In ML\EquityLens\models\stock_prediction_model_1.h5
