@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2fed0097-cbb1-4444-803f-d97623bcd0a7" name="Changes" comment="UseCase 2">
+      <change afterPath="$PROJECT_DIR$/celery_config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logger.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/PortfolioOptimizeController.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/PortfolioOptimizeController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/StockController.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/StockController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prototypes/blpo.py" beforeDir="false" afterPath="$PROJECT_DIR$/prototypes/blpo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/BlackLittermanOptimization.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/BlackLittermanOptimization.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/StockTrendPrediction.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/StockTrendPrediction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/__init__.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExportToHTMLSettings">
+    <option name="printScope" value="1" />
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/notebooks" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Jupyter Notebook" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;dev-ujas&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/OmPatel47097/Equity-Lens.git&quot;,
+    &quot;accountId&quot;: &quot;ca7ca00d-5b38-4a16-97a3-c8ff2f531beb&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2gZZQAupgmhcxjdGXdz2VqpZoHi" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Docker.docker-compose.yml.streamlit-app: Compose Deployment.executor": "Run",
+    "Python.BlackLittermanOptimization.executor": "Run",
+    "Python.PortfolioOptimizeController.executor": "Run",
+    "Python.StockClassifier.executor": "Run",
+    "Python.StockDataManager.executor": "Run",
+    "Python.StockTrendPrediction.executor": "Run",
+    "Python.app.executor": "Run",
+    "Python.blpo.executor": "Run",
+    "Python.hello-world.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.stock_trend_pred.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "S__4__UC__Improvement",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "S:/Conestoga/Learning_Subject/Level2/Projects in Machine Learning/Main_EquityLENs-CLONED/Equity-Lens/data/db/equity_lens_db.db",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "python.debugger.dataview.coloredbydefault": "false",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\College\Sem 2\Projects In ML\Equity-Lens\services" />
+      <recent name="D:\College\Sem 2\Projects In ML\Equity-Lens\data" />
+      <recent name="D:\College\Sem 2\Projects In ML\Equity-Lens\ui" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="S:\Conestoga\Learning_Subject\Level2\Projects in Machine Learning\Main_EquityLENs-CLONED\Equity-Lens" />
+      <recent name="D:\College\Sem 2\Projects In ML\EquityLens\prototypes" />
+      <recent name="D:\College\Sem 2\Projects In ML\Equity-Lens\prototypes" />
+      <recent name="D:\College\Sem 2\Projects In ML\Equity-Lens" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.main">
+    <configuration name="StockDataManager" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Equity-Lens" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/utils" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/StockDataManager.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="blpo" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Equity-Lens" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/services" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="D:\College\Sem 2\Projects In ML\Equity-Lens\blpo.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Equity-Lens" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="stock_trend_pred" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Equity-Lens" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/prototypes" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/prototypes/stock_trend_pred.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile" />
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml.streamlit-app: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="streamlit-app" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+        <item itemvalue="Docker.docker-compose.yml.streamlit-app: Compose Deployment" />
+        <item itemvalue="Python.blpo" />
+        <item itemvalue="Python.stock_trend_pred" />
+        <item itemvalue="Python.StockDataManager" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-PY-241.15989.155" />
+        <option value="bundled-python-sdk-babbdf50b680-7c6932dee5e4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.15989.155" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2fed0097-cbb1-4444-803f-d97623bcd0a7" name="Changes" comment="" />
+      <created>1715907041646</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1715907041646</updated>
+      <workItem from="1715907042789" duration="831000" />
+      <workItem from="1716052434196" duration="136000" />
+      <workItem from="1717095262464" duration="1905000" />
+      <workItem from="1717593575924" duration="1949000" />
+      <workItem from="1718822820754" duration="6615000" />
+      <workItem from="1718903402391" duration="4670000" />
+      <workItem from="1718919038220" duration="58000" />
+      <workItem from="1718919112833" duration="1580000" />
+      <workItem from="1719169654654" duration="4216000" />
+      <workItem from="1719205202972" duration="1028000" />
+      <workItem from="1719335548154" duration="1099000" />
+      <workItem from="1719336676570" duration="4626000" />
+      <workItem from="1719434912426" duration="14530000" />
+      <workItem from="1719535816219" duration="22850000" />
+      <workItem from="1719921941105" duration="1414000" />
+      <workItem from="1720008214062" duration="20629000" />
+      <workItem from="1720122571069" duration="1620000" />
+      <workItem from="1720463325334" duration="8600000" />
+      <workItem from="1720539999596" duration="10226000" />
+      <workItem from="1720576794109" duration="1639000" />
+      <workItem from="1720578843486" duration="10778000" />
+      <workItem from="1720643239270" duration="38000" />
+      <workItem from="1720645378486" duration="4369000" />
+      <workItem from="1720722448943" duration="6055000" />
+      <workItem from="1720728722471" duration="6577000" />
+      <workItem from="1721081579765" duration="844000" />
+      <workItem from="1721333022983" duration="1696000" />
+      <workItem from="1721335009319" duration="2190000" />
+      <workItem from="1721493025157" duration="4946000" />
+      <workItem from="1721510478142" duration="731000" />
+      <workItem from="1721669070511" duration="1887000" />
+      <workItem from="1721737888047" duration="9337000" />
+      <workItem from="1721940630019" duration="1256000" />
+      <workItem from="1721944790370" duration="33000" />
+      <workItem from="1721951283415" duration="2051000" />
+      <workItem from="1721967108549" duration="9989000" />
+    </task>
+    <task id="LOCAL-00001" summary="hello-world.py created">
+      <option name="closed" value="true" />
+      <created>1715907267298</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1715907267298</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Folder structure created">
+      <option name="closed" value="true" />
+      <created>1717095852049</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1717095852049</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Folder structure created">
+      <option name="closed" value="true" />
+      <created>1717096166149</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1717096166149</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Basic UI setup implemented using NextJS">
+      <option name="closed" value="true" />
+      <created>1717597764962</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1717597764962</updated>
+    </task>
+    <task id="LOCAL-00005" summary="StockClassifier.py created">
+      <option name="closed" value="true" />
+      <created>1718838373147</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1718838373147</updated>
+    </task>
+    <task id="LOCAL-00006" summary="UseCase 2">
+      <option name="closed" value="true" />
+      <created>1720548101670</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1720548101670</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="hello-world.py created" />
+    <MESSAGE value="Folder structure created" />
+    <MESSAGE value="Basic UI setup implemented using NextJS" />
+    <MESSAGE value="StockClassifier.py created" />
+    <MESSAGE value="UseCase 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="UseCase 2" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Equity_Lens$StockClassifier.coverage" NAME="StockClassifier Coverage Results" MODIFIED="1719854645683" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
+    <SUITE FILE_PATH="coverage/Equity_Lens$main.coverage" NAME="main Coverage Results" MODIFIED="1722026161097" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Equity_Lens$hello_world.coverage" NAME="hello-world Coverage Results" MODIFIED="1715907129189" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Equity_Lens$StockDataManager.coverage" NAME="StockDataManager Coverage Results" MODIFIED="1720619074933" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
+    <SUITE FILE_PATH="coverage/Equity_Lens$BlackLittermanOptimization.coverage" NAME="BlackLittermanOptimization Coverage Results" MODIFIED="1719783544071" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/services" />
+    <SUITE FILE_PATH="coverage/Equity_Lens$app.coverage" NAME="app Coverage Results" MODIFIED="1720722994680" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
+    <SUITE FILE_PATH="coverage/Equity_Lens$blpo.coverage" NAME="blpo Coverage Results" MODIFIED="1721968610184" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/services" />
+    <SUITE FILE_PATH="coverage/Equity_Lens$stock_trend_pred.coverage" NAME="stock_trend_pred Coverage Results" MODIFIED="1721739218342" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/prototypes" />
+    <SUITE FILE_PATH="coverage/Equity_Lens$PortfolioOptimizeController.coverage" NAME="PortfolioOptimizeController Coverage Results" MODIFIED="1719783394156" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
+    <SUITE FILE_PATH="coverage/Equity_Lens$StockTrendPrediction.coverage" NAME="StockTrendPrediction Coverage Results" MODIFIED="1719441008442" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
+    <SUITE FILE_PATH="coverage/EquityLens$main.coverage" NAME="main Coverage Results" MODIFIED="1720733844735" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/EquityLens$blpo.coverage" NAME="blpo Coverage Results" MODIFIED="1720734204155" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/services" />
+  </component>
+</project>

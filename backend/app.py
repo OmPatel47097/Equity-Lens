@@ -2,7 +2,6 @@ from flask import Flask, jsonify, request
 import yfinance as yf
 import json
 import pandas as pd
-from waitress import serve
 
 
 from backend.PortfolioOptimizeController import bp_portfolio_optimizer

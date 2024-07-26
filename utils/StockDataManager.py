@@ -14,7 +14,6 @@ class StockDataManager:
         return symbols
 
     def adj_close(self, tickers, interval):
-        data = self.dbManager.select_tickers(interval, ', '.join(tickers))
         df = pd.DataFrame(data, columns=['date'] + tickers)
         df.set_index('date', inplace=True)
         return df

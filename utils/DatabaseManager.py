@@ -9,7 +9,6 @@ class DatabaseManager:
         self.cursor = None
 
     def connect(self):
-        self.connection = sqlite3.connect('../data/db/equity_lens_db.db')
         self.cursor = self.connection.cursor()
         return self.connection, self.cursor
 
@@ -23,7 +22,6 @@ class DatabaseManager:
 
     def select_tickers(self, table, tickers):
         self.connect()
-        self.cursor.execute(f"SELECT date, {tickers} FROM `{table}`")
         data = self.cursor.fetchall()
         self.close()
         return data

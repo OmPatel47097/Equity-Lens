@@ -174,5 +174,4 @@ class StockTrendPrediction:
         best_model.save(f'../models/stock_prediction_model_{best_model_loss}.h5')
 
     def predict(self, data):
-        model = load_model('../models/stock_prediction_model_1.h5')
         return model.predict(data)

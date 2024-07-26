@@ -1,5 +1,4 @@
 import numpy as np
-import yfinance as yf
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 import torch
@@ -7,7 +6,6 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 from scipy.optimize import minimize
-
 from utils.StockDataManager import StockDataManager
 
 
@@ -29,9 +27,7 @@ class Generator(nn.Module):
     def __init__(self, input_dim, output_dim):
         super(Generator, self).__init__()
         self.model = nn.Sequential(
-            nn.Linear(input_dim, 128),
             nn.ReLU(),
-            nn.Linear(128, output_dim),
             nn.Tanh()
         )
 
@@ -94,9 +90,6 @@ class BlackLittermanOptimization:
         '''
         input_dim = n_assets
         output_dim = n_assets
-        model_dim = 64
-        num_heads = 4
-        num_layers = 2
 
         # Initialize models
         transformer = TransformerModel(input_dim, model_dim, num_heads, num_layers, output_dim)

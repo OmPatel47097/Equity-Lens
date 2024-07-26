@@ -2,7 +2,6 @@ from flask import Blueprint, jsonify, request
 from flask_cors import CORS, cross_origin
 import pandas as pd
 
-from services.BlackLittermanOptimization import BlackLittermanOptimization
 from utils.StockDataManager import StockDataManager
 import yfinance as yf
 
@@ -151,8 +150,6 @@ def cumulative_return():
         stockDataManager = StockDataManager()
 
         # Fetch historical data for the portfolio
-        portfolio_data_list = [stockDataManager.history(ticker=symbol, period=period, interval='1d')[['adj_close']] for
-                               symbol in symbols]
         portfolio_data = pd.concat(portfolio_data_list, axis=1, keys=[symbol for symbol in symbols])
         portfolio_data.columns = portfolio_data.columns.droplevel(1)
         portfolio_data = portfolio_data.fillna(method='ffill').fillna(method='bfill')
