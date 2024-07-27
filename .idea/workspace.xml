@@ -5,18 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2fed0097-cbb1-4444-803f-d97623bcd0a7" name="Changes" comment="UseCase 2">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.streamlit/config.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/credentials.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.streamlit/credentials.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notebooks/stock prediction.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/stock prediction.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prototypes/blpo.py" beforeDir="false" afterPath="$PROJECT_DIR$/prototypes/blpo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/BlackLittermanOptimization.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/BlackLittermanOptimizationModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/__init__.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -309,7 +299,7 @@
       <workItem from="1721951283415" duration="2051000" />
       <workItem from="1721967108549" duration="9989000" />
       <workItem from="1722032540108" duration="761000" />
-      <workItem from="1722033398453" duration="4532000" />
+      <workItem from="1722033398453" duration="4868000" />
     </task>
     <task id="LOCAL-00001" summary="hello-world.py created">
       <option name="closed" value="true" />
