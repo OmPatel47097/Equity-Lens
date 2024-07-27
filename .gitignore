@@ -142,6 +142,7 @@ data/db/
 
 # ide folder -op
 .idea/
+.idea/workspace.xml
 
 # environment file
 EquityLens_OP/
