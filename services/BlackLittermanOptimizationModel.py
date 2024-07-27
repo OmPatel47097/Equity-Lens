@@ -6,9 +6,9 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
+from utils.StockDataManager import StockDataManager
 from scipy.optimize import minimize
 from dotenv import load_dotenv
-from utils.StockDataManager import StockDataManager
 import logging
 from logger import configure_logging
 
@@ -35,9 +35,9 @@ class Generator(nn.Module):
         self.in_features = int(os.getenv('INPUT_FEATURES', 128))
         super(Generator, self).__init__()
         self.model = nn.Sequential(
-            nn.Linear(input_dim, self.out_features),
+            nn.Linear(input_dim, 128),
             nn.ReLU(),
-            nn.Linear(self.in_features, output_dim),
+            nn.Linear(128, output_dim),
             nn.Tanh()
         )
 

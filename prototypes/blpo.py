@@ -1,6 +1,10 @@
 import streamlit as st
 import logging
-from services.BlackLittermanOptimization import BlackLittermanOptimization
+import sys
+import os
+# Add the root directory to sys.path
+# sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from services.BlackLittermanOptimizationModel import BlackLittermanOptimization
 
 def main():
     logging.info("Starting Black-Litterman Optimization")

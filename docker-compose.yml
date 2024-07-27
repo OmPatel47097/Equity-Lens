@@ -1,17 +1,18 @@
 version: '3.8'
 
 services:
-  streamlit-app:
+  equitylens:
     build:
       context: .
       dockerfile: Dockerfile
+    image: equitylens_blpo:secretlog
     ports:
       - "${PORT:-8501}:80"  # Local development port
       - "7813:80"           # Server deployment port
     env_file:
       - .env
     volumes:
-      - ./models:/app/models
+      - .:/app  # Map the entire project directory
     environment:
       - OUTPUT_FEATURES=${OUTPUT_FEATURES}
       - INPUT_FEATURES=${INPUT_FEATURES}
