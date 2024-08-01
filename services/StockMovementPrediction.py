@@ -1,178 +1,201 @@
 import numpy as np
 import pandas as pd
-from keras import Input, Model
-from keras.layers import LSTM, MaxPooling1D, Flatten, concatenate, Dense, Dropout, Conv1D, Reshape
-from keras.saving.save import load_model
-from sklearn.model_selection import TimeSeriesSplit
+import yfinance as yf
 from sklearn.preprocessing import StandardScaler
-import keras_tuner as kt
-
-pd.options.mode.chained_assignment = None
-
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import LSTM, Dense, Conv1D, MaxPooling1D, Flatten, Dropout
+from tensorflow.keras.callbacks import EarlyStopping
+from sklearn.model_selection import train_test_split
 from utils.IndicatorGenerator import IndicatorGenerator
 from utils.StockDataManager import StockDataManager
+from utils.LoggerManager import LoggerManager
+from BlackLittermanOptimization import BlackLittermanOptimization
 
+# Constants
+SEQUENCE_LENGTH = 60
+BATCH_SIZE = 64
+EPOCHS = 50
+LEARNING_RATE = 0.001
 
-class StockMovementPrediction:
+logger = LoggerManager.get_logger(__name__)
 
-    def __init__(self, sequence_length=60):
-        self.model = None
-        self.df_test = None
-        self.df_train = None
-        self.scaler = None
-        self.data = None
-        self.sequence_length = sequence_length
+class StockPricePrediction:
+    def __init__(self, prediction_days):
+        self.prediction_days = prediction_days
         self.stockDataManager = StockDataManager()
-
-    def load_data(self, ticker):
-        self.data = self.stockDataManager.history(ticker, period='max', interval='1d')
-        self.data = self.data[:int(len(self.data)*60)]
-
-    def create_features(self):
-        indicatorGen = IndicatorGenerator(self.data)
-        rsi = indicatorGen.rsi()
-        macd, signal = indicatorGen.macd()
-        sma_5 = indicatorGen.moving_average(5)
-        sma_20 = indicatorGen.moving_average(20)
-        sma_50 = indicatorGen.moving_average(50)
-        sma_100 = indicatorGen.moving_average(100)
-        sma_200 = indicatorGen.moving_average(200)
-        ema_5 = indicatorGen.exponential_moving_average(5)
-        ema_20 = indicatorGen.exponential_moving_average(20)
-        ema_50 = indicatorGen.exponential_moving_average(50)
-        ema_100 = indicatorGen.exponential_moving_average(100)
-        ema_200 = indicatorGen.exponential_moving_average(200)
-        stochastic_oscillator = indicatorGen.stochastic_oscillator()
-        cci = indicatorGen.cci()
-        roc = indicatorGen.roc()
-        bollinger_bands = indicatorGen.bollinger_bands()
-        atr = indicatorGen.atr()
-        obv = indicatorGen.obv()
-        ad_line = indicatorGen.ad_line()
-        parabolic_sar = indicatorGen.parabolic_sar()
-        williams_r = indicatorGen.williams_r()
-        self.data['rsi'] = rsi
-        self.data['macd'] = macd
-        self.data['macd_signal'] = signal
-        # self.data['sma_5'] = sma_5
-        # self.data['sma_20'] = sma_20
-        # self.data['sma_50'] = sma_50
-        # self.data['sma_100'] = sma_100
-        # self.data['sma_200'] = sma_200
-        self.data['ema_5'] = ema_5
-        self.data['ema_20'] = ema_20
-        self.data['ema_50'] = ema_50
-        # self.data['ema_100'] = ema_100
-        # self.data['ema_200'] = ema_200
-        self.data['stochastic_oscillator'] = stochastic_oscillator
-        self.data['cci'] = cci
-        self.data['roc'] = roc
-        # self.data['bollinger_bands'] = bollinger_bands
-        # self.data['atr'] = atr
-        # self.data['obv'] = obv
-        # self.data['ad_line'] = ad_line
-        # self.data['parabolic_sar'] = parabolic_sar
-        # self.data['williams_r'] = williams_r
-
-        self.data.bfill(inplace=True)
-
-    def split_data(self):
-        data_len = len(self.data)
-        self.df_train = self.data[:int(data_len * 0.8)]
-        self.df_test = self.data[int(data_len * 0.8):]
-
-    def normalize_data(self):
-        columns = self.data.columns
         self.scaler = StandardScaler()
-        self.scaler.fit(self.df_train[columns])
-        self.df_train[columns] = self.scaler.transform(self.df_train[columns])
-        self.df_test[columns] = self.scaler.transform(self.df_test[columns])
+
+    def load_data(self, ticker, period='5y'):
+        data = self.stockDataManager.history(ticker, period, interval='1d')
+        if data is None or data.empty:
+            logger.error(f"No data found for {ticker} with period {period}")
+            return None
+        data.dropna(inplace=True)
+        logger.debug(f"Loaded data for {ticker}: {data.head()}")
+        return data
+
+    def create_features(self, data):
+        if data is None or data.empty:
+            logger.error("No data available for feature creation")
+            return None
+        indicator_generator = IndicatorGenerator(data)
+        data['ma50'] = indicator_generator.moving_average(50)
+        data['ema50'] = indicator_generator.exponential_moving_average(50)
+        data['macd'], data['macd_signal'] = indicator_generator.macd()
+        data['rsi'] = indicator_generator.rsi()
+        data['stochastic'] = indicator_generator.stochastic_oscillator()
+        data['cci'] = indicator_generator.cci()
+        data['roc'] = indicator_generator.roc()
+        # data['bb_middle'], data['bb_upper'], data['bb_lower'] = indicator_generator.bollinger_bands()
+        # data['atr'] = indicator_generator.atr()
+        # data['obv'] = indicator_generator.obv()
+        # data['ad_line'] = indicator_generator.ad_line()
+        # data['tenkan_sen'], data['kijun_sen'], data['senkou_span_a'], data['senkou_span_b'], data['chikou_span'] = indicator_generator.ichimoku_cloud()
+        # data['parabolic_sar'] = indicator_generator.parabolic_sar()
+        # data['williams_r'] = indicator_generator.williams_r()
+        data.dropna(inplace=True)
+        logger.debug(f"Features created: {data.head()}")
+        return data
+
+    def normalize_data(self, data):
+        if data is None or data.empty:
+            logger.error("Data is empty, cannot normalize")
+            return None
+        if 'adj_close' not in data.columns:
+            logger.error(f"'adj_close' column missing in data: {data.columns}")
+            return None
+        data_numeric = data.drop(columns=['symbol'])  # Exclude the 'symbol' column
+        scaled_data = self.scaler.fit_transform(data_numeric)
+        return pd.DataFrame(scaled_data, columns=data_numeric.columns, index=data.index)
 
     def create_sequences(self, data):
-        features = self.data.columns
-        target = 'adj_close'
-        X = []
-        y = []
-        x_raw = data[features].values
-        y_raw = data[target].values
-        for i in range(x_raw.shape[0] - self.sequence_length):
-            X.append(x_raw[i:i+self.sequence_length])
-            y.append(y_raw[i+self.sequence_length ])
+        if data is None or data.empty:
+            logger.error("No data available to create sequences")
+            return None, None
+        X, y = [], []
+        for i in range(len(data) - SEQUENCE_LENGTH - self.prediction_days + 1):
+            X.append(data.iloc[i:i+SEQUENCE_LENGTH].values)
+            y.append(data.iloc[i+SEQUENCE_LENGTH+self.prediction_days-1]['adj_close'])
+        if len(X) == 0 or len(y) == 0:
+            logger.error("Insufficient data to create sequences")
+            return None, None
         return np.array(X), np.array(y)
 
-    def build_model(self):
-        input_layer = Input(shape=(self.sequence_length, self.data.shape[1]))
+    def build_model(self, input_shape):
+        model = Sequential()
+        model.add(Conv1D(filters=64, kernel_size=3, activation='relu', input_shape=input_shape))
+        model.add(MaxPooling1D(pool_size=2))
+        model.add(Conv1D(filters=128, kernel_size=3, activation='relu'))
+        model.add(MaxPooling1D(pool_size=2))
+        model.add(Flatten())
+        model.add(Dense(50, activation='relu'))
+        model.add(Dense(1))
+        model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=LEARNING_RATE), loss='mse')
+        return model
 
-        # LSTM
-        lstm1 = LSTM(units=50, return_sequences=True)(input_layer)
-        lstm2 = LSTM(units=50, return_sequences=False)(lstm1)
+    def train_model(self, model, X_train, y_train):
+        if X_train is None or y_train is None or len(X_train) == 0 or len(y_train) == 0:
+            logger.error("No training data available")
+            return None
+        early_stopping = EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True)
+        history = model.fit(X_train, y_train, epochs=EPOCHS, batch_size=BATCH_SIZE, validation_split=0.2, callbacks=[early_stopping])
+        return history
 
-        # CNN
-        cnn1 = Conv1D(filters=64, kernel_size=2, activation='relu')(input_layer)
-        max_pool = MaxPooling1D(pool_size=2)(cnn1)
-        flatten = Flatten()(max_pool)
+    def predict(self, model, X_test):
+        if X_test is None or len(X_test) == 0:
+            logger.error("No test data available for prediction")
+            return None
+        predictions = model.predict(X_test)
+        return predictions
 
-        combined = concatenate([lstm2, flatten])
-        dense1 = Dense(units=64, activation='relu')(combined)
-        dropout = Dropout(0.5)(dense1)
-        output = Dense(1)(dropout)
+    def predict_single_stock_price(self, ticker):
+        try:
+            data = self.load_data(ticker)
+            print(data.shape)
+            if data is None:
+                return None
+            data = self.create_features(data)
+            print(data.shape)
+            if data is None:
+                return None
+            data_normalized = self.normalize_data(data)
+            if data_normalized is None:
+                return None
+            X, y = self.create_sequences(data_normalized)
+            if X is None or y is None:
+                return None
+            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-        self.model = Model(inputs=input_layer, outputs=output)
-        self.model.compile(loss='mse', optimizer='adam')
+            model = self.build_model((SEQUENCE_LENGTH, X.shape[2]))
+            self.train_model(model, X_train, y_train)
 
-    def train_model(self, X_train, y_train, X_test, y_test):
-        self.model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=50, batch_size=256)
+            predicted_price = self.predict(model, X_test[-1].reshape(1, SEQUENCE_LENGTH, X.shape[2]))[0][0]
+            if predicted_price is None:
+                return None
+            predicted_price = self.scaler.inverse_transform([[predicted_price] + [0]*(X.shape[2]-1)])[0][0]
 
-    def cross_validation_train(self, X_train, y_train, X_test, y_test):
-        tscv = TimeSeriesSplit(n_splits=5)
-        history = []
+            logger.info(f"Predicted price for {ticker} after {self.prediction_days} days: {predicted_price}")
+            return predicted_price
+        except Exception as e:
+            logger.error(e)
+            return None
 
-        for train_index, val_index in tscv.split(X_train):
-            X_train_cv, X_val_cv = X_train[train_index], X_train[val_index]
-            Y_train_cv, Y_val_cv = y_train[train_index], y_train[val_index]
+    def calculate_portfolio_value(self, capital, tickers):
+        try:
+            results = []
+            for ticker in tickers:
+                data = self.load_data(ticker)
+                if data is None:
+                    continue
+                data = self.create_features(data)
+                if data is None:
+                    continue
+                data_normalized = self.normalize_data(data)
+                if data_normalized is None:
+                    continue
+                X, y = self.create_sequences(data_normalized)
+                if X is None or y is None:
+                    continue
+                X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-            history.append(self.model.fit(X_train_cv, Y_train_cv, epochs=50, batch_size=32, validation_data=(X_val_cv, Y_val_cv)))
+                model = self.build_model((SEQUENCE_LENGTH, X.shape[2]))
+                self.train_model(model, X_train, y_train)
 
-        # Evaluate on the test set
-        test_loss = self.model.evaluate(X_test, y_test)
-        print(f'Test Loss: {test_loss}')
+                predicted_price = self.predict(model, X_test[-1].reshape(1, SEQUENCE_LENGTH, X.shape[2]))[0][0]
+                if predicted_price is None:
+                    continue
+                predicted_price = self.scaler.inverse_transform([[predicted_price] + [0]*(X.shape[2]-1)])[0][0]
 
+                latest_price = data['adj_close'].iloc[-1]
+                num_shares = round(capital / latest_price)
+                predicted_value = num_shares * predicted_price
 
-    def build_hypertune_model(self,hp):
-        input_layer = Input(shape=(self.sequence_length, self.data.shape[1]))
+                results.append({
+                    'ticker': ticker,
+                    'latest_price': latest_price,
+                    'predicted_price': predicted_price,
+                    'num_shares': num_shares,
+                    'predicted_value': predicted_value
+                })
 
-        lstm_units = hp.Int('lstm_units', min_value=32, max_value=128, step=16)
-        lstm_1 = LSTM(lstm_units, return_sequences=True)(input_layer)
-        lstm_2 = LSTM(lstm_units, return_sequences=False)(lstm_1)
+            logger.info(results)
+            return results
+        except Exception as e:
+            logger.error(e)
+            return []
 
-        cnn_filters = hp.Int('cnn_filters', min_value=32, max_value=128, step=16)
-        cnn_1 = Conv1D(filters=cnn_filters, kernel_size=2, activation='relu')(input_layer)
-        max_pooling = MaxPooling1D(pool_size=2)(cnn_1)
-        flatten = Flatten()(max_pooling)
+if __name__ == '__main__':
+    prediction_days = 30  # Predict the stock price 30 days into the future
+    spp = StockPricePrediction(prediction_days)
 
-        dense_units = hp.Int('dense_units', min_value=32, max_value=128, step=16)
-        combined = concatenate([lstm_2, flatten])
-        dense_1 = Dense(dense_units, activation='relu')(combined)
-        dropout_rate = hp.Float(
-            "dropout_rate",
-            min_value=0,
-            max_value=0.5)
-        dropout = Dropout(dropout_rate)(dense_1)
-        output_layer = Dense(1)(dropout)
+    # Predict the price of a single stock
+    ticker = "AAPL"
+    predicted_price = spp.predict_single_stock_price(ticker)
+    print(f"Predicted price for {ticker} after {prediction_days} days: {predicted_price}")
 
-        self.model = Model(inputs=input_layer, outputs=output_layer )
-        self.model.compile(optimizer='adam', loss='mean_squared_error')
-        return self.model
-
-    def hypertune_model(self, X_train, y_train, X_test, y_test):
-        tuner = kt.RandomSearch(self.build_hypertune_model, objective='val_loss', max_trials=10, executions_per_trial=1, directory='hypertune', project_name='stock_prediction')
-        tuner.search(X_train, y_train, epochs=50,batch_size=32, validation_split=0.2)
-        best_model = tuner.get_best_models(num_models=1)[0]
-
-        best_model_loss = best_model.evaluate(X_test, y_test)
-        print(f'Best model loss: {best_model_loss}')
-        best_model.save(f'../models/stock_prediction_model_{best_model_loss}.h5')
-
-    def predict(self, data):
-        model = load_model('../models/stock_prediction_model_1.h5')
-        return model.predict(data)
+    # Calculate the portfolio value with a given capital
+    capital = 100000
+    tickers = ["AAPL", "MSFT", "GOOGL"]
+    portfolio_value = spp.calculate_portfolio_value(capital, tickers)
+    print(f"Portfolio value after {prediction_days} days: {portfolio_value}")

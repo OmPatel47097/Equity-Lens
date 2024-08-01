@@ -25,11 +25,13 @@ def optimizePortfolio():
         if capital == 0:
             return jsonify({'error': 'Capital must me larger than zero.'}), 400
 
-        symbols = data['symbols'].split(',')
+        symbols = data['symbols']
         symbols = [symbol.strip() for symbol in symbols]
 
         if len(symbols) == 0:
             return jsonify({'error': 'No symbols provided'}), 400
+
+        print(symbols)
 
         stockDataManager = StockDataManager()
         valid_symbols = stockDataManager.get_symbols()
@@ -39,7 +41,7 @@ def optimizePortfolio():
             return jsonify({'error': 'Invalid symbols provided', 'invalid_symbols': non_valid_symbols}), 400
 
         bl_optimizer = BlackLittermanOptimization()
-        optimized_result = bl_optimizer.calulate_portfolio_value(capital, symbols)
+        optimized_result = bl_optimizer.calculate_portfolio_value(capital, symbols)
 
         return jsonify({'data': optimized_result}), 200
     except Exception as e:

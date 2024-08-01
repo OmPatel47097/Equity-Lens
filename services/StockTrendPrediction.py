@@ -1,12 +1,14 @@
 import numpy as np
 import pandas as pd
 from keras import Input, Model
-from keras.layers import LSTM, MaxPooling1D, Flatten, concatenate, Dense, Dropout, Conv1D, Reshape
-from keras.saving.save import load_model
+from keras.src.layers import concatenate
+from tensorflow.keras.layers import LSTM, Dense, Conv1D, MaxPooling1D, Flatten, Dropout
 from sklearn.model_selection import TimeSeriesSplit
 from sklearn.preprocessing import StandardScaler
 import keras_tuner as kt
 import os
+import tensorflow as tf
+
 
 pd.options.mode.chained_assignment = None
 
@@ -25,55 +27,30 @@ class StockTrendPrediction:
         self.sequence_length = sequence_length
         self.stockDataManager = StockDataManager()
 
-    def load_data(self, ticker):
-        self.data = self.stockDataManager.history(ticker, period='max', interval='1d')
+    def load_data(self, ticker, period='2y', interval = '1d'):
+        self.data = self.stockDataManager.history(ticker, period=period, interval=interval)
         self.data = self.data[:int(len(self.data)*60)]
+        self.data.drop(columns=['symbol'], inplace=True)
 
     def create_features(self):
         indicatorGen = IndicatorGenerator(self.data)
         rsi = indicatorGen.rsi()
         macd, signal = indicatorGen.macd()
-        sma_5 = indicatorGen.moving_average(5)
-        sma_20 = indicatorGen.moving_average(20)
-        sma_50 = indicatorGen.moving_average(50)
-        sma_100 = indicatorGen.moving_average(100)
-        sma_200 = indicatorGen.moving_average(200)
         ema_5 = indicatorGen.exponential_moving_average(5)
         ema_20 = indicatorGen.exponential_moving_average(20)
         ema_50 = indicatorGen.exponential_moving_average(50)
-        ema_100 = indicatorGen.exponential_moving_average(100)
-        ema_200 = indicatorGen.exponential_moving_average(200)
         stochastic_oscillator = indicatorGen.stochastic_oscillator()
         cci = indicatorGen.cci()
         roc = indicatorGen.roc()
-        bollinger_bands = indicatorGen.bollinger_bands()
-        atr = indicatorGen.atr()
-        obv = indicatorGen.obv()
-        ad_line = indicatorGen.ad_line()
-        parabolic_sar = indicatorGen.parabolic_sar()
-        williams_r = indicatorGen.williams_r()
         self.data['rsi'] = rsi
         self.data['macd'] = macd
         self.data['macd_signal'] = signal
-        # self.data['sma_5'] = sma_5
-        # self.data['sma_20'] = sma_20
-        # self.data['sma_50'] = sma_50
-        # self.data['sma_100'] = sma_100
-        # self.data['sma_200'] = sma_200
         self.data['ema_5'] = ema_5
         self.data['ema_20'] = ema_20
         self.data['ema_50'] = ema_50
-        # self.data['ema_100'] = ema_100
-        # self.data['ema_200'] = ema_200
         self.data['stochastic_oscillator'] = stochastic_oscillator
         self.data['cci'] = cci
         self.data['roc'] = roc
-        # self.data['bollinger_bands'] = bollinger_bands
-        # self.data['atr'] = atr
-        # self.data['obv'] = obv
-        # self.data['ad_line'] = ad_line
-        # self.data['parabolic_sar'] = parabolic_sar
-        # self.data['williams_r'] = williams_r
 
         self.data.bfill(inplace=True)
 
@@ -139,7 +116,7 @@ class StockTrendPrediction:
         print(f'Test Loss: {test_loss}')
 
 
-    def build_hypertune_model(self,hp):
+    def _build_hypertune_model(self,hp):
         input_layer = Input(shape=(self.sequence_length, self.data.shape[1]))
 
         lstm_units = hp.Int('lstm_units', min_value=32, max_value=128, step=16)
@@ -166,16 +143,30 @@ class StockTrendPrediction:
         return self.model
 
     def hypertune_model(self, X_train, y_train, X_test, y_test):
-        tuner = kt.RandomSearch(self.build_hypertune_model, objective='val_loss', max_trials=10, executions_per_trial=1, directory='hypertune', project_name='stock_prediction')
+        tuner = kt.RandomSearch(self._build_hypertune_model, objective='val_loss', max_trials=10, executions_per_trial=1, directory='hypertune', project_name='stock_prediction')
         tuner.search(X_train, y_train, epochs=50,batch_size=32, validation_split=0.2)
         best_model = tuner.get_best_models(num_models=1)[0]
 
         best_model_loss = best_model.evaluate(X_test, y_test)
         print(f'Best model loss: {best_model_loss}')
         best_model.save(f'../models/stock_prediction_model_{best_model_loss}.h5')
+        return best_model
 
     def predict(self, data):
         model_path = os.path.join('models','stock_prediction_model_1.h5')
-        model = load_model(model_path)
+        model = tf.keras.models.load_model(model_path)
         return model.predict(data)
+
+    def train_and_predict(self, ticker, period='2y', interval='1d'):
+        stockTrendPrediction = StockTrendPrediction()
+        stockTrendPrediction.load_data(ticker, period=period, interval=interval)
+        stockTrendPrediction.create_features()
+        stockTrendPrediction.split_data()
+        stockTrendPrediction.normalize_data()
+        X_train, y_train = stockTrendPrediction.create_sequences(stockTrendPrediction.df_train)
+        X_test, y_test = stockTrendPrediction.create_sequences(stockTrendPrediction.df_test)
+        model = stockTrendPrediction.hypertune_model(X_train, y_train, X_test, y_test)
+        test_prediction = model.predict(X_test)
+        return test_prediction, y_test
+
 # D:\College\Sem 2\Projects In ML\EquityLens\models\stock_prediction_model_1.h5
