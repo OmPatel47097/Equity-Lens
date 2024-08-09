@@ -11,12 +11,15 @@ from utils.IndicatorGenerator import IndicatorGenerator
 from utils.StockDataManager import StockDataManager
 from utils.LoggerManager import LoggerManager
 from BlackLittermanOptimization import BlackLittermanOptimization
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
-# Constants
-SEQUENCE_LENGTH = 60
-BATCH_SIZE = 64
-EPOCHS = 50
-LEARNING_RATE = 0.001
+# Constants - Made them Secrets
+SEQUENCE_LENGTH = int(os.getenv('SEQUENCE_LENGTH', 60))
+BATCH_SIZE = int(os.getenv('BATCH_SIZE_SMP', 64))
+EPOCHS = int(os.getenv('EPOCHS', 50))
+LEARNING_RATE = float(os.getenv('LEARNING_RATE_SMP', 0.001))
 
 logger = LoggerManager.get_logger(__name__)
 

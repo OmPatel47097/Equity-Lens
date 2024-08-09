@@ -30,8 +30,9 @@ def _fetch_top_performing_stocks():
 
 
 def fetch_news(symbol):
-    ticker = yf.Ticker(symbol)
-    return ticker.news[:2]
+    stock = yf.Ticker(symbol)
+    news = stock.news
+    return news
 
 def format_timestamp(timestamp):
     return datetime.utcfromtimestamp(timestamp).strftime('%Y-%m-%d')
@@ -68,6 +69,7 @@ def show():
         combined_news = []
         for symbol in top_stocks_df['symbol']:
             news_items = fetch_news(symbol)
+            # print(news_items)
             for item in news_items:
                 combined_news.append({
                     'title': item['title'],

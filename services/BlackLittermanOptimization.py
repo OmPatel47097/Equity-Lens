@@ -9,18 +9,22 @@ from torch.utils.data import DataLoader, TensorDataset
 from scipy.optimize import minimize
 from utils.StockDataManager import StockDataManager
 from utils.LoggerManager import LoggerManager
+from dotenv import load_dotenv
+import os
 
-# Constants
-MODEL_DIM = 64
-NUM_HEADS = 4
-NUM_LAYERS = 2
-OUTPUT_DIM = 128
-LEARNING_RATE = 0.001
-NUM_EPOCHS = 500
-BATCH_SIZE = 128
-RISK_FREE_RATE = 0.02
-DELTA = 2.5
-TAU = 0.05
+load_dotenv()
+
+# Constants - Made them Secrets
+MODEL_DIM = int(os.getenv('MODEL_DIM', 64))
+NUM_HEADS = int(os.getenv('NUM_HEADS', 4))
+NUM_LAYERS = int(os.getenv('NUM_LAYERS', 2))
+OUTPUT_DIM = int(os.getenv('OUTPUT_DIM', 128))
+LEARNING_RATE = float(os.getenv('LEARNING_RATE', 0.001))
+NUM_EPOCHS = int(os.getenv('NUM_EPOCHS', 500))
+BATCH_SIZE = int(os.getenv('BATCH_SIZE', 128))
+RISK_FREE_RATE = float(os.getenv('RISK_FREE_RATE', 0.02))
+DELTA = float(os.getenv('DELTA', 2.5))
+TAU = float(os.getenv('TAU', 0.05))
 
 logger = LoggerManager.get_logger(__name__)
 
@@ -63,6 +67,7 @@ class BlackLittermanOptimization:
         :param period: Period to collect the data.
         :return: The dataframe with historical data.
         """
+        logger.info("Collecting data for {}".format(tickers))
         data = self.stockDataManager.adj_close(tickers, interval='1d')
         data.dropna(inplace=True)
         if len(data) > 5 * 252:
@@ -70,6 +75,7 @@ class BlackLittermanOptimization:
         return data
 
     def normalize_data(self, data: pd.DataFrame, tickers: list[str]) -> pd.DataFrame:
+        logger.info("Normalizing data")
         """
         Normalize the data using MinMaxScaler.
         :param data: The dataframe to normalize.
@@ -82,6 +88,7 @@ class BlackLittermanOptimization:
         return data_normalized
 
     def train_generator(self, n_assets: int, data: pd.DataFrame) -> Generator:
+        logger.info("Training generator")
         """
         Train the generator model.
         :param data: The normalized historical data.
@@ -127,6 +134,7 @@ class BlackLittermanOptimization:
         return generator
 
     def optimize_weights(self, data: pd.DataFrame, n_assets: int, generator: Generator, delta: float = DELTA, tau: float = TAU, risk_free_rate: float = RISK_FREE_RATE) -> np.ndarray:
+        logger.info("Optimizing weights")
         """
         Optimize the weights using the Black-Litterman model.
         :param data: The dataframe with the normalized historical data.

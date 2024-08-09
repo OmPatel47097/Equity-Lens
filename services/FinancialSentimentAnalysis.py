@@ -1,5 +1,7 @@
 import os
 import torch
+import mlflow
+import mlflow.pytorch
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
 
@@ -18,6 +20,7 @@ class FinancialSentimentAnalyzer:
             self.model = AutoModelForSequenceClassification.from_pretrained(
                 model_dir
             ).to(self.device)
+            mlflow.log_param("model_source", "local")
         else:
             print(f"Downloading model {model_name}")
             self.tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -25,6 +28,9 @@ class FinancialSentimentAnalyzer:
                 model_name
             ).to(self.device)
             self.save_model()
+            mlflow.log_param("model_source", "downloaded")
+
+        mlflow.pytorch.log_model(self.model, "sentiment_model")
 
     def save_model(self):
         print(f"Saving model to {self.model_dir}")
@@ -49,3 +55,7 @@ class FinancialSentimentAnalyzer:
             return "Negative", sentiment_score
         else:
             return "Neutral", sentiment_score
+
+
+        mlflow.log_metric("sentiment_score", sentiment_score)
+        mlflow.log_param("sentiment", sentiment)

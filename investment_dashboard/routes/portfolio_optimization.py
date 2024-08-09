@@ -9,7 +9,8 @@ import plotly.graph_objects as go
 # Add the parent directory of the current script to the system path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir, os.pardir)))
 
-from services.BlackLittermanOptimization import BlackLittermanOptimization
+# from services.BlackLittermanOptimization import BlackLittermanOptimization
+from services.PortfolioOptimizationMLOpsPipeline import portfolio_optimization_pipeline   # Import the pipeline function
 
 def show():
     st.title("Portfolio Optimization")
@@ -27,8 +28,8 @@ def show():
     if st.button("Optimize Portfolio"):
         with st.spinner("Optimizing..."):
             try:
-                bl = BlackLittermanOptimization()
-                result = bl.calculate_portfolio_value(capital, tickers)
+                # bl = BlackLittermanOptimization()
+                result = portfolio_optimization_pipeline(capital, tickers)      # Call the pipeline function instead of the BlackLittermanOptimization class
 
                 st.divider()
                 if result:
