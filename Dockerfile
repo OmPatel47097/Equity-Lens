@@ -26,4 +26,4 @@ RUN cp credentials.toml ~/.streamlit/credentials.toml
 ENTRYPOINT ["streamlit", "run"]
 
 # This command tells Streamlit to run your app.py script when the container starts.
-CMD ["investment_dashboard/main.py"]
+CMD ["./investment_dashboard/main.py"]

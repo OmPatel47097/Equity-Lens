@@ -28,4 +28,3 @@ services:
       - BATCH_SIZE_SMP=${BATCH_SIZE_SMP}
       - EPOCHS=${EPOCHS}
       - LEARNING_RATE_SMP=${LEARNING_RATE_SMP}
-    command: [ "streamlit", "run", "investment_dashboard/main.py" ]
